@@ -10,43 +10,43 @@ TaskHub is a modern and responsive task management web application built with An
 * User Profile Management
 * Reactive Contact Form with validation
 * Responsive navigation for desktop and mobile devices
-Angular Data Binding and Directives
-Custom Angular Pipes
-Component-based architecture
-Service-based state management using Observables and BehaviorSubjects
-Accessibility-focused design
-Responsive layouts using CSS Grid and Flexbox
+* Angular Data Binding and Directives
+* Custom Angular Pipes
+* Component-based architecture
+* Service-based state management using Observables and BehaviorSubjects
+* Accessibility-focused design
+* Responsive layouts using CSS Grid and Flexbox
 
 # Angular Concepts Demonstrated
-Standalone Components
-Routing and Navigation
-Interpolation
-Property Binding
-Event Binding
-Two-Way Data Binding (ngModel)
-Structural Directives (*ngIf, *ngFor)
-Attribute Directives (ngClass, dynamic styling)
-Reactive Forms
-Template-Driven Forms
-Custom Pipes
-Services and Dependency Injection
-Observable-based Component Communication
+* Standalone Components
+* Routing and Navigation
+* Interpolation
+* Property Binding
+* Event Binding
+* Two-Way Data Binding (ngModel)
+* Structural Directives (*ngIf, *ngFor)
+* Attribute Directives (ngClass, dynamic styling)
+* Reactive Forms
+* Template-Driven Forms
+* Custom Pipes
+* Services and Dependency Injection
+* Observable-based Component Communication
 
 # Technology Stack
-Angular 17
-TypeScript
-HTML5
-CSS3
-RxJS
-Angular Forms
-Angular Router
+* Angular 17
+* TypeScript
+* HTML5
+* CSS3
+* RxJS
+* Angular Forms
+* Angular Router
 
 ## Running the Project
 
-npm install
-ng serve
+* npm install
+* ng serve
 
-Open:
+* Open:
 http://localhost:4200
 
 This project was developed as part of an Angular responsive web application to demonstrate component-based architecture, data binding, directives, forms, responsive design, and modern Angular development practices.
