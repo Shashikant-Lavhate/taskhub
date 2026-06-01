@@ -4,12 +4,12 @@ TaskHub is a modern and responsive task management web application built with An
 
 
 # Key Features
-Dashboard with personalized greeting and task statistics
-Complete Task Management (Create, Read, Update, Delete)
-Task filtering and status tracking
-User Profile Management
-Reactive Contact Form with validation
-Responsive navigation for desktop and mobile devices
+* Dashboard with personalized greeting and task statistics
+* Complete Task Management (Create, Read, Update, Delete)
+* Task filtering and status tracking
+* User Profile Management
+* Reactive Contact Form with validation
+* Responsive navigation for desktop and mobile devices
 Angular Data Binding and Directives
 Custom Angular Pipes
 Component-based architecture
