@@ -1,0 +1,55 @@
+<header class="header" role="banner">
+  <div class="header__inner container">
+    <a routerLink="/" class="header__brand" (click)="closeMobileMenu()" [attr.aria-label]="appName + ' home'">
+      <span class="header__logo" aria-hidden="true">✓</span>
+      <span class="header__title">{{ appName }}</span>
+    </a>
+
+    <button
+      type="button"
+      class="header__toggle"
+      [attr.aria-expanded]="mobileMenuOpen"
+      aria-controls="main-nav"
+      [attr.aria-label]="mobileMenuOpen ? 'Close navigation menu' : 'Open navigation menu'"
+      (click)="toggleMobileMenu()"
+    >
+      <span class="header__toggle-bar" [class.header__toggle-bar--open]="mobileMenuOpen"></span>
+      <span class="header__toggle-bar" [class.header__toggle-bar--open]="mobileMenuOpen"></span>
+      <span class="header__toggle-bar" [class.header__toggle-bar--open]="mobileMenuOpen"></span>
+    </button>
+
+    <nav
+      id="main-nav"
+      class="header__nav"
+      [class.header__nav--open]="mobileMenuOpen"
+      role="navigation"
+      aria-label="Main navigation"
+    >
+      <a
+        routerLink="/"
+        routerLinkActive="header__link--active"
+        [routerLinkActiveOptions]="{ exact: true }"
+        class="header__link"
+        (click)="closeMobileMenu()"
+      >Home</a>
+      <a
+        routerLink="/tasks"
+        routerLinkActive="header__link--active"
+        class="header__link"
+        (click)="closeMobileMenu()"
+      >Tasks</a>
+      <a
+        routerLink="/profile"
+        routerLinkActive="header__link--active"
+        class="header__link"
+        (click)="closeMobileMenu()"
+      >Profile</a>
+      <a
+        routerLink="/contact"
+        routerLinkActive="header__link--active"
+        class="header__link"
+        (click)="closeMobileMenu()"
+      >Contact</a>
+    </nav>
+  </div>
+</header>

@@ -1,0 +1,88 @@
+.profile__header {
+  margin-bottom: 1.5rem;
+
+  h1 {
+    margin: 0 0 0.5rem;
+    font-size: clamp(1.5rem, 3vw, 2rem);
+  }
+
+  p {
+    margin: 0;
+    color: var(--text-muted);
+  }
+}
+
+.profile-layout {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+
+  @media (min-width: 768px) {
+    grid-template-columns: 280px 1fr;
+  }
+}
+
+.profile-card {
+  text-align: center;
+
+  h2 {
+    margin: 0 0 0.25rem;
+    font-size: 1.25rem;
+  }
+}
+
+.avatar {
+  width: 5rem;
+  height: 5rem;
+  margin: 0 auto 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--primary);
+  color: #fff;
+  font-size: 2rem;
+  font-weight: 700;
+  border-radius: 50%;
+}
+
+.profile-card__role {
+  margin: 0 0 0.5rem;
+  color: var(--primary);
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
+.profile-card__joined {
+  margin: 0 0 1.25rem;
+  font-size: 0.875rem;
+  color: var(--text-muted);
+}
+
+.profile-details h2 {
+  margin: 0 0 1rem;
+  font-size: 1.125rem;
+}
+
+.details-view dl {
+  margin: 0;
+  display: grid;
+  gap: 1rem;
+}
+
+.details-view dt {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-muted);
+  margin-bottom: 0.15rem;
+}
+
+.details-view dd {
+  margin: 0;
+  color: var(--text-primary);
+}
+
+.input--invalid {
+  border-color: var(--danger) !important;
+}

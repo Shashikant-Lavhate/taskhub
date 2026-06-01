@@ -1,0 +1,133 @@
+<section class="tasks" aria-labelledby="tasks-heading">
+  <header class="tasks__header">
+    <div>
+      <h1 id="tasks-heading">Task List</h1>
+      <p class="tasks__subtitle">Manage tasks with dynamic updates and filters.</p>
+    </div>
+    <button type="button" class="btn btn--primary" (click)="toggleAddForm()">
+      {{ showAddForm ? 'Cancel' : 'Add Task' }}
+    </button>
+  </header>
+
+  <div *ngIf="addSuccess" class="alert alert--success" role="alert" aria-live="polite">
+    Task added successfully!
+  </div>
+
+  <form
+    *ngIf="showAddForm"
+    class="add-form card"
+    (ngSubmit)="addTask()"
+    aria-label="Add new task"
+  >
+    <h2 class="add-form__title">New Task</h2>
+    <div class="form-row">
+      <label for="task-title">Title</label>
+      <input
+        id="task-title"
+        type="text"
+        [(ngModel)]="newTitle"
+        name="title"
+        required
+        placeholder="Enter task title"
+      />
+    </div>
+    <div class="form-row">
+      <label for="task-desc">Description</label>
+      <textarea
+        id="task-desc"
+        [(ngModel)]="newDescription"
+        name="description"
+        rows="2"
+        placeholder="Optional description"
+      ></textarea>
+    </div>
+    <div class="form-row form-row--grid">
+      <div>
+        <label for="task-priority">Priority</label>
+        <select id="task-priority" [(ngModel)]="newPriority" name="priority">
+          <option *ngFor="let p of priorities" [value]="p">{{ p | priorityLabel }}</option>
+        </select>
+      </div>
+      <div>
+        <label for="task-due">Due Date</label>
+        <input id="task-due" type="date" [(ngModel)]="newDueDate" name="dueDate" required />
+      </div>
+      <div>
+        <label for="task-cost">Est. Cost (USD)</label>
+        <input id="task-cost" type="number" [(ngModel)]="newCost" name="cost" min="0" step="0.01" />
+      </div>
+    </div>
+    <button type="submit" class="btn btn--primary" [disabled]="!newTitle.trim()">Save Task</button>
+  </form>
+
+  <div class="filter-bar" role="group" aria-label="Filter tasks">
+    <button
+      type="button"
+      class="filter-btn"
+      [class.filter-btn--active]="filter === 'all'"
+      (click)="setFilter('all')"
+    >All ({{ tasks.length }})</button>
+    <button
+      type="button"
+      class="filter-btn"
+      [class.filter-btn--active]="filter === 'active'"
+      (click)="setFilter('active')"
+    >Active</button>
+    <button
+      type="button"
+      class="filter-btn"
+      [class.filter-btn--active]="filter === 'completed'"
+      (click)="setFilter('completed')"
+    >Completed</button>
+  </div>
+
+  <p *ngIf="filteredTasks.length === 0" class="empty-state">
+    No tasks match the current filter.
+  </p>
+
+  <ul *ngIf="filteredTasks.length > 0" class="task-list" role="list">
+    <li
+      *ngFor="let task of filteredTasks; trackBy: trackByTaskId"
+      class="task-card"
+      [class.task-card--completed]="task.completed"
+      [ngClass]="'task-card--' + task.priority"
+    >
+      <div class="task-card__check">
+        <input
+          type="checkbox"
+          [id]="'task-check-' + task.id"
+          [checked]="task.completed"
+          (change)="toggleComplete(task.id)"
+          [attr.aria-label]="'Mark ' + task.title + ' as ' + (task.completed ? 'incomplete' : 'complete')"
+        />
+        <label [for]="'task-check-' + task.id" class="visually-hidden">
+          Toggle {{ task.title }}
+        </label>
+      </div>
+      <div class="task-card__body">
+        <h3 [class.task-card__title--done]="task.completed">{{ task.title }}</h3>
+        <p *ngIf="task.description" class="task-card__desc">{{ task.description }}</p>
+        <div class="task-card__meta">
+          <span
+            class="badge"
+            [class.badge--high]="task.priority === 'high'"
+            [class.badge--medium]="task.priority === 'medium'"
+            [class.badge--low]="task.priority === 'low'"
+          >
+            {{ task.priority | priorityLabel | lowercase }}
+          </span>
+          <span>Due: {{ task.dueDate | date: 'mediumDate' }}</span>
+          <span *ngIf="task.estimatedCost > 0">{{ task.estimatedCost | currency: 'USD' }}</span>
+        </div>
+      </div>
+      <button
+        type="button"
+        class="btn btn--danger btn--sm"
+        (click)="removeTask(task.id)"
+        [attr.aria-label]="'Delete task ' + task.title"
+      >
+        Delete
+      </button>
+    </li>
+  </ul>
+</section>

@@ -1,0 +1,94 @@
+<section class="contact" aria-labelledby="contact-heading">
+  <header class="contact__header">
+    <h1 id="contact-heading">Contact Us</h1>
+    <p>Send us a message using our reactive form with full validation.</p>
+  </header>
+
+  <div *ngIf="submitSuccess" class="alert alert--success" role="alert" aria-live="polite">
+    Thank you! Your message has been sent successfully.
+  </div>
+
+  <form
+    class="contact-form card"
+    [formGroup]="contactForm"
+    (ngSubmit)="onSubmit()"
+    novalidate
+    aria-label="Contact form"
+  >
+    <div class="form-row" [class.form-row--invalid]="submitted && f['name'].invalid">
+      <label for="contact-name">Full Name <span class="required" aria-hidden="true">*</span></label>
+      <input
+        id="contact-name"
+        type="text"
+        formControlName="name"
+        [attr.aria-invalid]="submitted && f['name'].invalid"
+        [attr.aria-describedby]="submitted && f['name'].invalid ? 'name-error' : null"
+        autocomplete="name"
+        placeholder="Your full name"
+      />
+      <p *ngIf="submitted && f['name'].errors?.['required']" id="name-error" class="error-msg" role="alert">
+        Name is required.
+      </p>
+      <p *ngIf="submitted && f['name'].errors?.['minlength']" id="name-error" class="error-msg" role="alert">
+        Name must be at least 2 characters.
+      </p>
+    </div>
+
+    <div class="form-row" [class.form-row--invalid]="submitted && f['email'].invalid">
+      <label for="contact-email">Email <span class="required" aria-hidden="true">*</span></label>
+      <input
+        id="contact-email"
+        type="email"
+        formControlName="email"
+        [attr.aria-invalid]="submitted && f['email'].invalid"
+        [attr.aria-describedby]="submitted && f['email'].invalid ? 'email-error' : null"
+        autocomplete="email"
+        placeholder="you@example.com"
+      />
+      <p *ngIf="submitted && f['email'].errors?.['required']" id="email-error" class="error-msg" role="alert">
+        Email is required.
+      </p>
+      <p *ngIf="submitted && f['email'].errors?.['email']" id="email-error" class="error-msg" role="alert">
+        Please enter a valid email address.
+      </p>
+    </div>
+
+    <div class="form-row">
+      <label for="contact-subject">Subject</label>
+      <select id="contact-subject" formControlName="subject">
+        <option *ngFor="let subject of subjects" [value]="subject">{{ subject }}</option>
+      </select>
+    </div>
+
+    <div class="form-row" [class.form-row--invalid]="submitted && f['message'].invalid">
+      <label for="contact-message">Message <span class="required" aria-hidden="true">*</span></label>
+      <textarea
+        id="contact-message"
+        formControlName="message"
+        rows="5"
+        [attr.aria-invalid]="submitted && f['message'].invalid"
+        [attr.aria-describedby]="submitted && f['message'].invalid ? 'message-error' : null"
+        placeholder="Write your message (10–500 characters)"
+      ></textarea>
+      <p *ngIf="submitted && f['message'].errors?.['required']" id="message-error" class="error-msg" role="alert">
+        Message is required.
+      </p>
+      <p *ngIf="submitted && f['message'].errors?.['minlength']" id="message-error" class="error-msg" role="alert">
+        Message must be at least 10 characters.
+      </p>
+      <p *ngIf="submitted && f['message'].errors?.['maxlength']" id="message-error" class="error-msg" role="alert">
+        Message cannot exceed 500 characters.
+      </p>
+    </div>
+
+    <div class="form-row form-row--checkbox">
+      <input id="contact-newsletter" type="checkbox" formControlName="newsletter" />
+      <label for="contact-newsletter">Subscribe to our newsletter</label>
+    </div>
+
+    <div class="form-actions">
+      <button type="submit" class="btn btn--primary">Send Message</button>
+      <button type="button" class="btn btn--outline" (click)="resetForm()">Reset</button>
+    </div>
+  </form>
+</section>

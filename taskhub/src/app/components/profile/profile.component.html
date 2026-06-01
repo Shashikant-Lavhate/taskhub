@@ -1,0 +1,119 @@
+<section class="profile" aria-labelledby="profile-heading">
+  <header class="profile__header">
+    <h1 id="profile-heading">User Profile</h1>
+    <p>Edit your profile using template-driven forms and two-way binding.</p>
+  </header>
+
+  <div *ngIf="saveSuccess" class="alert alert--success" role="alert" aria-live="polite">
+    Profile saved successfully!
+  </div>
+
+  <div class="profile-layout">
+    <aside class="profile-card card" aria-label="Profile summary">
+      <div class="avatar" [attr.aria-label]="'Avatar for ' + profile.name">
+        {{ profile.name.charAt(0) }}
+      </div>
+      <h2>{{ profile.name }}</h2>
+      <p class="profile-card__role">{{ profile.role | lowercase }}</p>
+      <p class="profile-card__joined">
+        Joined {{ profile.joinedDate | date: 'longDate' }}
+      </p>
+      <button
+        *ngIf="!editMode"
+        type="button"
+        class="btn btn--primary btn--block"
+        (click)="enableEdit()"
+      >
+        Edit Profile
+      </button>
+    </aside>
+
+    <div class="profile-details card">
+      <h2>Profile Details</h2>
+
+      <div *ngIf="!editMode" class="details-view">
+        <dl>
+          <dt>Name</dt>
+          <dd>{{ profile.name }}</dd>
+          <dt>Email</dt>
+          <dd>{{ profile.email }}</dd>
+          <dt>Role</dt>
+          <dd>{{ profile.role }}</dd>
+          <dt>Bio</dt>
+          <dd>{{ profile.bio || 'No bio provided.' }}</dd>
+        </dl>
+      </div>
+
+      <form
+        *ngIf="editMode"
+        #profileForm="ngForm"
+        class="profile-form"
+        (ngSubmit)="saveProfile()"
+        aria-label="Edit profile form"
+      >
+        <div class="form-row">
+          <label for="profile-name">Name</label>
+          <input
+            id="profile-name"
+            type="text"
+            name="name"
+            [(ngModel)]="profile.name"
+            required
+            minlength="2"
+            #nameField="ngModel"
+            [class.input--invalid]="nameField.invalid && nameField.touched"
+          />
+          <p *ngIf="nameField.invalid && nameField.touched" class="error-msg" role="alert">
+            Name is required (min 2 characters).
+          </p>
+        </div>
+
+        <div class="form-row">
+          <label for="profile-email">Email</label>
+          <input
+            id="profile-email"
+            type="email"
+            name="email"
+            [(ngModel)]="profile.email"
+            required
+            email
+            #emailField="ngModel"
+            [class.input--invalid]="emailField.invalid && emailField.touched"
+          />
+          <p *ngIf="emailField.invalid && emailField.touched" class="error-msg" role="alert">
+            Please enter a valid email.
+          </p>
+        </div>
+
+        <div class="form-row">
+          <label for="profile-role">Role</label>
+          <input
+            id="profile-role"
+            type="text"
+            name="role"
+            [(ngModel)]="profile.role"
+            required
+          />
+        </div>
+
+        <div class="form-row">
+          <label for="profile-bio">Bio</label>
+          <textarea
+            id="profile-bio"
+            name="bio"
+            rows="4"
+            [(ngModel)]="profile.bio"
+            placeholder="Tell us about yourself"
+          ></textarea>
+        </div>
+
+        <div class="form-actions">
+          <button type="submit" class="btn btn--primary" [disabled]="profileForm.invalid">
+            Save Changes
+          </button>
+          <button type="button" class="btn btn--outline" (click)="cancelEdit()">Cancel</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>

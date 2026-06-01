@@ -1,0 +1,65 @@
+<section class="home" aria-labelledby="home-heading">
+  <div *ngIf="showWelcomeBanner" class="banner" role="status">
+    <p>Welcome to TaskHub — your Angular assignment demo application.</p>
+    <button type="button" class="banner__close" aria-label="Dismiss welcome message" (click)="dismissBanner()">
+      &times;
+    </button>
+  </div>
+
+  <header class="home__hero">
+    <p class="home__greeting">{{ greeting }},</p>
+    <h1 id="home-heading" class="home__title">{{ userName }}</h1>
+    <p class="home__subtitle">
+      Role: <strong>{{ userService.profile.role | uppercase }}</strong>
+      &middot; Member since {{ userService.profile.joinedDate | date: 'mediumDate' }}
+    </p>
+  </header>
+
+  <div *ngIf="isLoading" class="loading" aria-live="polite" aria-busy="true">
+    <span class="loading__spinner" aria-hidden="true"></span>
+    Loading dashboard...
+  </div>
+
+  <div *ngIf="!isLoading" class="stats-grid">
+    <article class="stat-card" [style.border-left-color]="'var(--primary)'">
+      <h2 class="stat-card__label">Total Tasks</h2>
+      <p class="stat-card__value">{{ stats.total }}</p>
+    </article>
+    <article class="stat-card" [style.border-left-color]="'var(--success)'">
+      <h2 class="stat-card__label">Completed</h2>
+      <p class="stat-card__value">{{ stats.completed }}</p>
+    </article>
+    <article class="stat-card" [style.border-left-color]="'var(--warning)'">
+      <h2 class="stat-card__label">Pending</h2>
+      <p class="stat-card__value">{{ stats.pending }}</p>
+    </article>
+    <article class="stat-card" [style.border-left-color]="'var(--accent)'">
+      <h2 class="stat-card__label">Total Budget</h2>
+      <p class="stat-card__value">{{ stats.totalBudget | currency: 'USD' }}</p>
+    </article>
+  </div>
+
+  <section class="recent" aria-labelledby="recent-heading">
+    <div class="recent__header">
+      <h2 id="recent-heading">Upcoming Tasks</h2>
+      <a routerLink="/tasks" class="btn btn--outline">View all tasks</a>
+    </div>
+
+    <p *ngIf="recentTasks.length === 0" class="empty-state">No pending tasks. Great work!</p>
+
+    <ul *ngIf="recentTasks.length > 0" class="recent__list" role="list">
+      <li *ngFor="let task of recentTasks" class="recent__item" [ngClass]="'priority-' + task.priority">
+        <div class="recent__item-main">
+          <h3>{{ task.title }}</h3>
+          <p class="recent__meta">
+            <span class="badge" [class.badge--high]="task.priority === 'high'">
+              {{ task.priority | priorityLabel }}
+            </span>
+            Due {{ task.dueDate | date: 'shortDate' }}
+            <span *ngIf="task.estimatedCost > 0"> &middot; {{ task.estimatedCost | currency: 'USD' }}</span>
+          </p>
+        </div>
+      </li>
+    </ul>
+  </section>
+</section>
