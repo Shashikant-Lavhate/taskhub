@@ -1,59 +1,52 @@
-# Taskhub
+# TaskHub – Responsive Task Management Application
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.26.
+TaskHub is a modern and responsive task management web application built with Angular 17 using standalone components and Angular best practices. The application enables users to efficiently manage tasks, update profile information, and interact with dynamic forms through an intuitive and user-friendly interface.
 
-## Development server
 
-To start a local development server, run:
+# Key Features
+Dashboard with personalized greeting and task statistics
+Complete Task Management (Create, Read, Update, Delete)
+Task filtering and status tracking
+User Profile Management
+Reactive Contact Form with validation
+Responsive navigation for desktop and mobile devices
+Angular Data Binding and Directives
+Custom Angular Pipes
+Component-based architecture
+Service-based state management using Observables and BehaviorSubjects
+Accessibility-focused design
+Responsive layouts using CSS Grid and Flexbox
 
-```bash
+# Angular Concepts Demonstrated
+Standalone Components
+Routing and Navigation
+Interpolation
+Property Binding
+Event Binding
+Two-Way Data Binding (ngModel)
+Structural Directives (*ngIf, *ngFor)
+Attribute Directives (ngClass, dynamic styling)
+Reactive Forms
+Template-Driven Forms
+Custom Pipes
+Services and Dependency Injection
+Observable-based Component Communication
+
+# Technology Stack
+Angular 17
+TypeScript
+HTML5
+CSS3
+RxJS
+Angular Forms
+Angular Router
+
+## Running the Project
+
+npm install
 ng serve
-```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+Open:
+http://localhost:4200
 
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
-```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+This project was developed as part of an Angular responsive web application to demonstrate component-based architecture, data binding, directives, forms, responsive design, and modern Angular development practices.
